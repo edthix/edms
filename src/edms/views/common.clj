@@ -39,5 +39,5 @@
       [:div.well
        [:p "2012 - Developed by " [:a {:href "#"} "Trikom Studio."]]]]]
     
-    (include-js  "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" "/js/bootstrap.min.js")
+    (include-js  "/js/jquery.js" "/js/bootstrap.min.js")
     ]))
