@@ -16,7 +16,7 @@
       [:div.navbar-inner             
        [:div.container
                 
-        [:a.brand {:href "/"} "EDMS"]
+        [:a.brand {:href "/"} "electronic document management system"]
 
         [:ul.nav
          [:li [:a {:href "/documents"} "Documents"]]
@@ -32,12 +32,6 @@
         
         ]]]
 
-     [:header
-      [:div.well
-       [:h1 "Prototype " [:small "24 Feb 2012"]]
-       [:p "Prototype for <span class=\"label label-info\">SEDCO</span>. Document Management & Tracking System developed by <span class=\"label label-success\">Trikom Studio</span> based on requirements/specs."]
-       [:p [:span.label.label-warning "NOTICE: This is a demonstration and not a fully working system"]]
-       ]]
      
      content
 
@@ -45,5 +39,5 @@
       [:div.well
        [:p "2012 - Developed by " [:a {:href "#"} "Trikom Studio."]]]]]
     
-    (include-js "/js/bootstrap.min.js")
+    (include-js  "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" "/js/bootstrap.min.js")
     ]))
