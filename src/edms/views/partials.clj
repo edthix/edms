@@ -1,34 +1,31 @@
 (ns edms.views.partials
   (:use [noir.core :only [defpage defpartial]]
-        [hiccup.core :only [html]]))
+        [hiccup.core :only [html]])
+  (import java.util.Date))
 
 (defpartial login-box []
-  [:form.form-horizontal.login {:action "/documents"}
-   [:fieldset
-    [:legend "Login"]
-
-    [:div.control-group
-     [:label.control-label "Username / Email"]
-     [:div.controls
-      [:input.input-xlarge {:type "text" :value "trikom"}]]]
-
-    [:div.control-group
-     [:label.control-label "Password"]
-     [:div.controls
-      [:input.input-xlarge {:type "password" :value "password"}]]]
-    
-    [:div.form-actions
-     [:button.btn.btn-primary {:type "submit"} "Login"]
-     ]
+  ^"Render inline login box"
+  
+  [:h2 "Login"]
+  [:hr]
+  
+   [:form.form-inline {:action "/documents" :method "GET"} 
+    [:input.input-large {:type "text" :placeholder "username"}] "&nbsp;&nbsp;"
+    [:input.input-large {:type "password" :placeholder "password"}] "&nbsp;&nbsp;"
+    [:label.checkbox [:input {:type "checkbox"}] "Remember me"] "&nbsp;&nbsp;"
+    [:button.btn.btn-primary {:type "submit"} "Sign in"]
     ]
-   ])
+  )
 
 (defpartial announcement-box []
-  [:div.well.announcement
+  [:div.hero-unit.announcement
    [:a {:href "#" :class "close" :onclick "$('.announcement').hide();"} "&times;"]
-   [:h1 "Prototype " [:small "8 Mar 2012"]]
-   [:p "Prototype for <span class=\"label label-info\">SEDCO</span>. Document Management & Tracking System developed by <span class=\"label label-success\">Trikom Studio</span> based on requirements/specs."]
-   [:p [:span.label.label-warning "NOTICE: This is a demonstration and not a fully working system"]]
-   ]
+   [:h1 "Prototype " [:small (new Date)]]
    
-)
+   [:p "Prototype for <span class=\"label label-info\">SEDCO</span>."]
+
+   [:p "Document Management & Tracking System developed by <span class=\"label label-success\">Trikom Studio</span> based on requirements/specs."]
+   
+   [:p [:span.label.label-warning "NOTICE: This is a demonstration and not a fully working system"]]
+   
+   ])

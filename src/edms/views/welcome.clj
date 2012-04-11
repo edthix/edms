@@ -7,19 +7,12 @@
         [edms.views.partials]))
 
 
-
-
 (defpage "/" []
+  ^"GET / - home page"
+  
   (common/layout
-
-   [:header
-    (announcement-box)]
-   
-   ;; login
-   [:div.row
-    [:div.span6.offset3
-     (login-box)]]
-   
+   (announcement-box)
+   (login-box)   
    ))
 
 (defpage "/welcome" []

@@ -150,55 +150,48 @@
   )
 
 (defpage "/documents" []
+  ^"GET /documents. List documents by year and paginated"
+
   (common/layout
-
-   [:header
-    [:h2 "Documents" [:small " archive of files"]]]
    
-   [:div.row
+   [:header
+    [:h2 "Documents" [:small " archive of files based on year"]]]
 
-    (sidebar)
+   ;; Breadcrumb
+   [:ul.breadcrumb
+    [:li "Documents" [:span.divider "/"]]
+    ]
 
+   [:div.well
+
+    [:form.form-inline
+     [:select#year
+      [:option {:value 2012} "2012"]
+      [:option {:value 2011} "2011"]
+      [:option {:value 2010} "2010"]
+      ]
+     ]
     
-    [:div.span10
-     ;; Breadcrumb
-     [:ul.breadcrumb
-      [:li "Documents" [:span.divider "/"]]
-      ]
-
-     [:div.well
-
-      [:form.form-inline
-       [:select#year
-        [:option {:value 2012} "2012"]
-        [:option {:value 2011} "2011"]
-        [:option {:value 2010} "2010"]
-        ]
-       ]
-      
-      [:table.table.table-bordered.table-condensed.table-striped
-       [:caption "List of documents for 2012"]
-       [:thead
-        [:tr
-         [:th "File Index"]
-         [:th "Status"]
-         [:th "Category"]
-         [:th "Shelf Number"]
-         [:th "&nbsp;" ]
-         ]]
-
-       [:tbody (take 10 (repeatedly document-row))]]
-      ]
-
-     [:div.pagination.pagination-centered
-      [:ul
-       [:li.active [:a {:href "#"} 1]]
-       [:li [:a {:href "#"} 2]]
+    [:table.table.table-bordered.table-condensed.table-striped
+     [:caption "List of documents for 2012"]
+     [:thead
+      [:tr
+       [:th "File Index"]
+       [:th "Status"]
+       [:th "Category"]
+       [:th "Shelf Number"]
+       [:th "&nbsp;" ]
        ]]
-     (document-modal)
-     ] ;; span9
-    ] ;; row
-   ))
+
+     [:tbody (take 10 (repeatedly document-row))]]
+    ]
+
+   [:div.pagination.pagination-centered
+    [:ul
+     [:li.active [:a {:href "#"} 1]]
+     [:li [:a {:href "#"} 2]]
+     ]]
+   (document-modal)))
 
 (defpage "/documents/:id" {:keys [id]}
   (common/layout
