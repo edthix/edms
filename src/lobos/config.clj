@@ -1,12 +1,15 @@
 (ns lobos.config
   (:use lobos.connectivity))
 
-(def edms-db
-  {
-   :classname "org.mysql.Driver"
-   :subprotocol "mysql"
-   :subname "edms"
-   :user "root"
-   :password ""})
+;; MYSQL
+;; (def edms-db
+;;   {:classname "org.mysql.Driver" :subprotocol "mysql" :subname "//localhost:3306/edms"
+;;    :user "root" :password ""})
 
-(open-global edms-db)
+;; POSTGRESQL
+(def edms-db
+  {:classname "org.postgresql.Driver" :subprotocol "postgresql" :subname "//localhost:5432/edms"
+   :user "edms" :password "edms"})
+
+;; (open-global edms-db)
+

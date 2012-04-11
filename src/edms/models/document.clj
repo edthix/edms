@@ -2,7 +2,14 @@
   (:require [noir.validation :as vali])
   (:use [korma.db] [korma.core]))
 
-(defdb db-mysql (mysql {:db "edms" :user "root" :password ""}))
+;; (defdb db-mysql (mysql {:db "edms" :user "root" :password ""}))
+(defdb db-postgres (postgres
+                    {:db "edms"
+                     :user "edms"
+                     :password "edms"
+                     :host "localhost"
+                     :port "5432"
+                     }))
 
 (defentity documents)
 

@@ -3,6 +3,7 @@
   (:use [noir.core :only [defpage defpartial]]
         [hiccup.core :only [html]]))
 
+;; Variables
 (def file-index "1001/001PT.04")
 (def status-closed "Closed")
 (def status-opened "Opened")
@@ -13,7 +14,7 @@
 (def date-of-close "31 Mar 2012")
 (def length-of-stored-period "27 Feb 2012")
 (def file-number 491)
-
+ 
 (defpartial document-row []
   [:tr
    [:td [:a {:href "#myModal" :data-toggle "modal" } file-index]]
