@@ -11,6 +11,4 @@
   {:classname "org.postgresql.Driver" :subprotocol "postgresql" :subname "//localhost:5432/edms"
    :user "edms" :password "edms"})
 
-
 ;; (open-global edms-db)
-
