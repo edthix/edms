@@ -14,9 +14,11 @@
 (def date-of-close "31 Mar 2012")
 (def length-of-stored-period "27 Feb 2012")
 (def file-number 491)
- 
+
+;; Generate document table row in /documents 
 (defpartial document-row []
   [:tr
+   [:td [:a {:href "#myModal" :data-toggle "modal" } 1]]
    [:td [:a {:href "#myModal" :data-toggle "modal" } file-index]]
    [:td [:a {:href "#myModal" :data-toggle "modal" } status-closed]]
    [:td [:a {:href "#myModal" :data-toggle "modal" } category-normal]]
@@ -24,19 +26,19 @@
    [:td {:style "width:195px;text-align: center;"}
     [:a.btn.btn-mini {:href "/documents/1"} [:i.icon-edit] "View"]
     "&nbsp;"
-    [:a.btn.btn-mini {:href "#"} [:i.icon-edit] "Edit"]
+    [:a.btn.btn-mini {:href "/documents/1/edit"} [:i.icon-edit] "Edit"]
     "&nbsp;"
     [:a.btn.btn-mini.btn-danger {:href "#" :onclick "return confirm('Are you sure?');"} [:i.icon-trash] "Delete"]]]
   )
 
+;; Generate document movement row in /documents/:id
 (defpartial document-movement-row []
   [:tr
    [:td "1 Jan 2012"]
    [:td [:a {:href "#"} "User 1"]]
    [:td "31 Jan 2012"]
    [:td [:a {:href "#"} "User 1"]]
-   [:td "Document remarks go here ...."]]
-  )
+   [:td "Document remarks go here ...."]])
 
 (defpartial document-modal []
   [:div.modal.fade {:id "myModal"}
@@ -150,17 +152,11 @@
   )
 
 (defpage "/documents" []
-  ^"GET /documents. List documents by year and paginated"
-
   (common/layout
    
    [:header
     [:h2 "Documents" [:small " archive of files based on year"]]]
 
-   ;; Breadcrumb
-   [:ul.breadcrumb
-    [:li "Documents" [:span.divider "/"]]
-    ]
 
    [:div.well
 
@@ -169,13 +165,13 @@
       [:option {:value 2012} "2012"]
       [:option {:value 2011} "2011"]
       [:option {:value 2010} "2010"]
-      ]
-     ]
+      ]] ;; select document year
     
     [:table.table.table-bordered.table-condensed.table-striped
      [:caption "List of documents for 2012"]
      [:thead
       [:tr
+       [:th "ID"]
        [:th "File Index"]
        [:th "Status"]
        [:th "Category"]
@@ -193,31 +189,92 @@
      ]]
    (document-modal)))
 
+(defpage "/documents/:id/edit" {:keys [id]}
+  (common/layout
+
+   [:div.row-fluid
+    [:div.span12
+
+     [:form.form-horizontal {:method "GET" :action "/documents/1"}
+      [:fieldset
+       [:legend "Edit document"]
+       
+       [:div.control-group
+        [:label.control-label "Title"]
+        [:div.controls
+         [:input.input-xlarge {:type "text" :value "Hardware procurements"}]]]
+
+       [:div.control-group
+        [:label.control-label "Remarks"]
+        [:div.controls
+         [:input.input-xlarge {:type "text" :value "Remarks on documents"}]]]
+
+       [:div.control-group
+        [:label.control-label "Upload file"]
+        [:div.controls
+         [:input.input-xlarge {:type "file" :value "1001/001PT.04"}]]]
+       
+       
+       [:div.control-group
+        [:label.control-label "Index"]
+        [:div.controls
+         [:input.input-xlarge {:type "text" :value "1001/001PT.04"}]]]
+
+       [:div.control-group
+        [:label.control-label "Status"]
+        [:div.controls
+         [:input.input-xlarge {:type "text" :value "Closed"}]]]
+
+       [:div.control-group
+        [:label.control-label "Category"]
+        [:div.controls
+         [:input.input-xlarge {:type "text" :value "Normal"}]]]
+
+       [:div.control-group
+        [:label.control-label "Shelf no"]
+        [:div.controls
+         [:input.input-xlarge {:type "text" :value "K/D(R/1-1)"}]]]
+
+       [:div.control-group
+        [:label.control-label "Open Date"]
+        [:div.controls
+         [:input.input-xlarge {:type "text" :value "Jan 21 2012"}]]]
+
+       [:div.form-actions
+        [:button.btn.btn-primary {:type "submit"} "Update"]]       
+       ]
+      ]
+     
+     ]]
+   )
+  )
+
 (defpage "/documents/:id" {:keys [id]}
   (common/layout
    [:header
-    [:h2 "Document info" [:small ""]]]
+    [:h2 "Document info"]]
    
-   [:div.row
-    (sidebar)
-
-    [:div.span10
-     ;; Breadcrumb
-     [:ul.breadcrumb
-      [:li [:a {:href "/documents"} "Documents"] [:span.divider "/"]]
-      [:li "Document 1"]
-      ]
+   [:div.row-fluid
+    [:div.span12
 
      [:div.row
       
-      [:div.span10
+      [:div.span12
        [:div.well
         [:h2 file-index [:small "&nbsp;" file-number ]]
-        [:p "DESCRIPTION"]
+        [:p "DESCRIPTION - Long description of document here"]
+
+        [:h3 "File viewer"]
+        [:p
+         [:a.btn.btn-mini.btn-info {:href "/img/example.pdf"} "Download"]]
+        [:p         
+         [:embed {:src "/img/example.pdf" :width "100%" :height "300px"}]
+         ]
+        
         ]
        ] ;; span5
 
-      [:div.span10
+      [:div.span12
        [:div.well
         [:table.table
          [:tr
@@ -246,7 +303,7 @@
       ] ;; row
 
      [:div.row
-      [:div.span10
+      [:div.span12
        [:div.well {:style "background: transparent"}
         [:h3 "Document movements "]
 

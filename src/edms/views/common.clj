@@ -26,38 +26,28 @@
         [:a.brand {:href "/"} "EDMS"]
 
         [:div.nav-collapse
-         [:ul.nav
+         [:ul.nav          
           [:li [:a {:href "/documents"} "Documents"]]
-          [:li [:a {:href "/"} "Users"]]
+          [:li [:a {:href "/users"} "Users"]]
 
-          [:li.dropdown
-           [:a.dropdown-toggle {:data-toggle "dropdown"} "Reports" [:b.caret "&nbsp;"]]
-           [:ul.dropdown-menu
-            [:li [:a {:href "#"} "Search"]]
-            [:li [:a {:href "#"} "Reports"]]]]        
+          ;; [:li.dropdown
+          ;;  [:a.dropdown-toggle {:data-toggle "dropdown"} "Reports" [:b.caret "&nbsp;"]]
+          ;;  [:ul.dropdown-menu
+          ;;   [:li [:a {:href "#"} "Search"]]
+          ;;   [:li [:a {:href "#"} "Reports"]]]]        
           ]
-         [:p.navbar-text.pull-right "Logged in as " [:a {:href "#"} "username"]]
+
+         [:p.navbar-text.pull-right          
+          [:a {:href "/dashboard"} "Dashboard"]
+          "&nbsp;&nbsp;&nbsp;&nbsp;"
+          [:a {:href "#"} "Sign out"]
+          ]
          ] ;; nav-collapse
         ]]] ;; navbar
 
      [:div.container-fluid
       [:div.row-fluid
-       [:div.span3
-        [:div.well.sidebar-nav
-         [:ul.nav.nav-list
-          [:li.nav-header "Sidebar"]
-          [:li [:a {:href "#"} "Menu"]]
-          [:li [:a {:href "#"} "Menu"]]
-          [:li [:a {:href "#"} "Menu"]]
-          [:li [:a {:href "#"} "Menu"]]
-          ]]] ;; span3
-
-       [:div.span9
-        
-        [:div.row-fluid
-         content ]
-        
-        ] ;; span9
+       content
        ] ;; row-fluid
       
       [:hr]
