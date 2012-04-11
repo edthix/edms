@@ -5,9 +5,8 @@
 (defpartial layout [& content]
   (html5
    [:head
-    [:title "EDMS Prototype"]
-    (include-css "/css/bootstrap.min.css" "/css/style.css")    
-    ]
+    [:title "EDMS"]
+    (include-css "/css/bootstrap.css")]
    
    [:body
     [:div.container
@@ -39,5 +38,5 @@
       [:div.well
        [:p "2012 - Developed by " [:a {:href "#"} "Trikom Studio."]]]]]
     
-    (include-js  "/js/jquery.js" "/js/bootstrap.min.js")
+    (include-js  "/js/jquery.js" "/js/bootstrap.js")
     ]))
